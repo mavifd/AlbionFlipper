@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,6 +85,13 @@
             this.UpdateCosts = new ReaLTaiizor.Controls.SpaceButton();
             this.CheckProfits = new ReaLTaiizor.Controls.SpaceButton();
             this.upgradecloudCh = new ReaLTaiizor.Controls.CheckBox();
+            this.moonLabel4 = new ReaLTaiizor.Controls.MoonLabel();
+            this.savecityBtn = new ReaLTaiizor.Controls.SpaceButton();
+            this.moonLabel5 = new ReaLTaiizor.Controls.MoonLabel();
+            this.buycitycb = new ReaLTaiizor.Controls.ForeverComboBox();
+            this.sellcitycb = new ReaLTaiizor.Controls.ForeverComboBox();
+            this.manueldataTxt = new System.Windows.Forms.RichTextBox();
+            this.manueldataAdd = new ReaLTaiizor.Controls.SpaceButton();
             ((System.ComponentModel.ISupportInitialize)(this.relict4val)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soult4val)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runet4val)).BeginInit();
@@ -109,37 +116,37 @@
             // 
             // Column2
             // 
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.Format = "N0";
+            dataGridViewCellStyle17.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle17;
             this.Column2.HeaderText = "Profit";
             this.Column2.Name = "Column2";
             this.Column2.Width = 125;
             // 
             // Column4
             // 
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            this.Column4.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            this.Column4.DefaultCellStyle = dataGridViewCellStyle18;
             this.Column4.HeaderText = "Black Market";
             this.Column4.Name = "Column4";
             this.Column4.Width = 275;
             // 
             // Column1
             // 
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle19;
             this.Column1.HeaderText = "Item";
             this.Column1.Name = "Column1";
             this.Column1.Width = 250;
             // 
             // Column3
             // 
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle20;
             this.Column3.HeaderText = "Caerleon";
             this.Column3.Name = "Column3";
             this.Column3.Width = 275;
@@ -636,14 +643,14 @@
             this.profitData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.profitData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.profitData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.profitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.profitData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.profitData.ColumnHeadersHeight = 30;
             this.profitData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.profitData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -652,28 +659,28 @@
             this.Col3,
             this.Col4,
             this.Col5});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.profitData.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.profitData.DefaultCellStyle = dataGridViewCellStyle23;
             this.profitData.EnableHeadersVisualStyles = false;
             this.profitData.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.profitData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.profitData.Location = new System.Drawing.Point(12, 179);
             this.profitData.Name = "profitData";
             this.profitData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.profitData.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.profitData.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.profitData.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.profitData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.profitData.ShowCellErrors = false;
@@ -688,34 +695,34 @@
             // 
             this.Col1.HeaderText = "Item";
             this.Col1.Name = "Col1";
-            this.Col1.Width = 141;
+            this.Col1.Width = 200;
             // 
             // Col2
             // 
-            dataGridViewCellStyle14.Format = "N0";
-            dataGridViewCellStyle14.NullValue = null;
-            this.Col2.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle22.Format = "N0";
+            dataGridViewCellStyle22.NullValue = null;
+            this.Col2.DefaultCellStyle = dataGridViewCellStyle22;
             this.Col2.HeaderText = "Profit";
             this.Col2.Name = "Col2";
-            this.Col2.Width = 141;
+            this.Col2.Width = 75;
             // 
             // Col3
             // 
             this.Col3.HeaderText = "Caerleon";
             this.Col3.Name = "Col3";
-            this.Col3.Width = 142;
+            this.Col3.Width = 200;
             // 
             // Col4
             // 
             this.Col4.HeaderText = "Black Market";
             this.Col4.Name = "Col4";
-            this.Col4.Width = 141;
+            this.Col4.Width = 200;
             // 
             // Col5
             // 
             this.Col5.HeaderText = "Upgrade";
             this.Col5.Name = "Col5";
-            this.Col5.Width = 141;
+            this.Col5.Width = 400;
             // 
             // LoggerTXT
             // 
@@ -724,7 +731,10 @@
             this.LoggerTXT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
             this.LoggerTXT.Location = new System.Drawing.Point(12, 508);
             this.LoggerTXT.Name = "LoggerTXT";
-            this.LoggerTXT.Size = new System.Drawing.Size(1122, 89);
+            this.LoggerTXT.ReadOnly = true;
+            this.LoggerTXT.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.LoggerTXT.ShortcutsEnabled = false;
+            this.LoggerTXT.Size = new System.Drawing.Size(1119, 54);
             this.LoggerTXT.TabIndex = 156;
             this.LoggerTXT.Text = "";
             // 
@@ -738,7 +748,7 @@
             this.metroControlBox1.DefaultLocation = ReaLTaiizor.Enum.Metro.LocationType.Normal;
             this.metroControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
             this.metroControlBox1.IsDerivedStyle = true;
-            this.metroControlBox1.Location = new System.Drawing.Point(1033, 9);
+            this.metroControlBox1.Location = new System.Drawing.Point(1029, 9);
             this.metroControlBox1.MaximizeBox = false;
             this.metroControlBox1.MaximizeHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroControlBox1.MaximizeHoverForeColor = System.Drawing.Color.Gray;
@@ -821,12 +831,139 @@
             this.upgradecloudCh.TabIndex = 164;
             this.upgradecloudCh.Text = "Cloud Update";
             // 
+            // moonLabel4
+            // 
+            this.moonLabel4.AutoSize = true;
+            this.moonLabel4.BackColor = System.Drawing.Color.Transparent;
+            this.moonLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.moonLabel4.Location = new System.Drawing.Point(281, 12);
+            this.moonLabel4.Name = "moonLabel4";
+            this.moonLabel4.Size = new System.Drawing.Size(101, 20);
+            this.moonLabel4.TabIndex = 166;
+            this.moonLabel4.Text = "Buy City Code";
+            // 
+            // savecityBtn
+            // 
+            this.savecityBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.savecityBtn.Customization = "Kioq/zIyMv8yMjL/Kioq/y8vL/8nJyf//v7+/yMjI/8qKir/";
+            this.savecityBtn.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.savecityBtn.Image = null;
+            this.savecityBtn.Location = new System.Drawing.Point(725, 8);
+            this.savecityBtn.Name = "savecityBtn";
+            this.savecityBtn.NoRounding = false;
+            this.savecityBtn.Size = new System.Drawing.Size(119, 28);
+            this.savecityBtn.TabIndex = 167;
+            this.savecityBtn.Text = "Save";
+            this.savecityBtn.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.savecityBtn.Transparent = false;
+            this.savecityBtn.Click += new System.EventHandler(this.savecityBtn_Click);
+            // 
+            // moonLabel5
+            // 
+            this.moonLabel5.AutoSize = true;
+            this.moonLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.moonLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.moonLabel5.Location = new System.Drawing.Point(503, 12);
+            this.moonLabel5.Name = "moonLabel5";
+            this.moonLabel5.Size = new System.Drawing.Size(101, 20);
+            this.moonLabel5.TabIndex = 169;
+            this.moonLabel5.Text = "Sell City Code";
+            // 
+            // buycitycb
+            // 
+            this.buycitycb.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(27)))), ((int)(((byte)(29)))));
+            this.buycitycb.BGColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.buycitycb.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buycitycb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.buycitycb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.buycitycb.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.buycitycb.ForeColor = System.Drawing.Color.White;
+            this.buycitycb.FormattingEnabled = true;
+            this.buycitycb.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.buycitycb.HoverFontColor = System.Drawing.Color.White;
+            this.buycitycb.ItemHeight = 18;
+            this.buycitycb.Items.AddRange(new object[] {
+            "Bridgewatch",
+            "Martlock",
+            "Fort Sterling",
+            "Thetford",
+            "Lymhurst",
+            "Brecilien",
+            "Caerleon"});
+            this.buycitycb.Location = new System.Drawing.Point(382, 10);
+            this.buycitycb.Name = "buycitycb";
+            this.buycitycb.Size = new System.Drawing.Size(121, 24);
+            this.buycitycb.TabIndex = 170;
+            // 
+            // sellcitycb
+            // 
+            this.sellcitycb.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(27)))), ((int)(((byte)(29)))));
+            this.sellcitycb.BGColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(47)))), ((int)(((byte)(49)))));
+            this.sellcitycb.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.sellcitycb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.sellcitycb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sellcitycb.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.sellcitycb.ForeColor = System.Drawing.Color.White;
+            this.sellcitycb.FormattingEnabled = true;
+            this.sellcitycb.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
+            this.sellcitycb.HoverFontColor = System.Drawing.Color.White;
+            this.sellcitycb.ItemHeight = 18;
+            this.sellcitycb.Items.AddRange(new object[] {
+            "Bridgewatch",
+            "Martlock",
+            "Fort Sterling",
+            "Thetford",
+            "Lymhurst",
+            "Brecilien",
+            "Caerleon",
+            "Black Market"});
+            this.sellcitycb.Location = new System.Drawing.Point(604, 10);
+            this.sellcitycb.Name = "sellcitycb";
+            this.sellcitycb.Size = new System.Drawing.Size(121, 24);
+            this.sellcitycb.TabIndex = 171;
+            // 
+            // manueldataTxt
+            // 
+            this.manueldataTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.manueldataTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.manueldataTxt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(132)))));
+            this.manueldataTxt.Location = new System.Drawing.Point(11, 568);
+            this.manueldataTxt.Name = "manueldataTxt";
+            this.manueldataTxt.ReadOnly = true;
+            this.manueldataTxt.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.manueldataTxt.Size = new System.Drawing.Size(993, 85);
+            this.manueldataTxt.TabIndex = 172;
+            this.manueldataTxt.Text = "";
+            // 
+            // manueldataAdd
+            // 
+            this.manueldataAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.manueldataAdd.Customization = "Kioq/zIyMv8yMjL/Kioq/y8vL/8nJyf//v7+/yMjI/8qKir/";
+            this.manueldataAdd.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.manueldataAdd.Image = null;
+            this.manueldataAdd.Location = new System.Drawing.Point(1012, 568);
+            this.manueldataAdd.Name = "manueldataAdd";
+            this.manueldataAdd.NoRounding = false;
+            this.manueldataAdd.Size = new System.Drawing.Size(119, 85);
+            this.manueldataAdd.TabIndex = 173;
+            this.manueldataAdd.Text = "Add Manuel Data";
+            this.manueldataAdd.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.manueldataAdd.Transparent = false;
+            this.manueldataAdd.Click += new System.EventHandler(this.manueldataAdd_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-            this.ClientSize = new System.Drawing.Size(1145, 608);
+            this.ClientSize = new System.Drawing.Size(1141, 664);
+            this.Controls.Add(this.manueldataAdd);
+            this.Controls.Add(this.manueldataTxt);
+            this.Controls.Add(this.sellcitycb);
+            this.Controls.Add(this.buycitycb);
+            this.Controls.Add(this.moonLabel5);
+            this.Controls.Add(this.savecityBtn);
+            this.Controls.Add(this.moonLabel4);
             this.Controls.Add(this.upgradecloudCh);
             this.Controls.Add(this.CheckProfits);
             this.Controls.Add(this.UpdateCosts);
@@ -875,7 +1012,7 @@
             this.Name = "Main";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "themeForm1";
+            this.Text = "Albion Flipper";
             this.TransparencyKey = System.Drawing.Color.Purple;
             this.Load += new System.EventHandler(this.Main_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_MouseDown);
@@ -944,17 +1081,24 @@
         private ReaLTaiizor.Controls.MoonLabel moonLabel2;
         private ReaLTaiizor.Controls.MoonLabel moonLabel3;
         private ReaLTaiizor.Controls.PoisonDataGridView profitData;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col5;
         private System.Windows.Forms.RichTextBox LoggerTXT;
         private ReaLTaiizor.Controls.MetroControlBox metroControlBox1;
         private ReaLTaiizor.Controls.SpaceButton ClearData;
         private ReaLTaiizor.Controls.SpaceButton UpdateCosts;
         private ReaLTaiizor.Controls.SpaceButton CheckProfits;
         private ReaLTaiizor.Controls.CheckBox upgradecloudCh;
+        private ReaLTaiizor.Controls.MoonLabel moonLabel4;
+        private ReaLTaiizor.Controls.SpaceButton savecityBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Col1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Col2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Col3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Col4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Col5;
+        private ReaLTaiizor.Controls.MoonLabel moonLabel5;
+        private ReaLTaiizor.Controls.ForeverComboBox buycitycb;
+        private ReaLTaiizor.Controls.ForeverComboBox sellcitycb;
+        private System.Windows.Forms.RichTextBox manueldataTxt;
+        private ReaLTaiizor.Controls.SpaceButton manueldataAdd;
     }
 }
 

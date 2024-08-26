@@ -9,6 +9,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text;
+using System.Net.Sockets;
+using NATS.Client;
+using System.Runtime.Remoting.Contexts;
+using System.Windows.Markup;
 
 namespace AlbionFlipperServer
 {
@@ -106,6 +110,9 @@ namespace AlbionFlipperServer
         int capeupcost = 96;
         int bagupcost = 192;
 
+        int BuyCityCode = 3005;
+        int SellCityCode = 3003;
+
         private async Task<string> UpdateCostRequest()
         {
             string items = "T4_RUNE,T5_RUNE,T6_RUNE,T7_RUNE,T8_RUNE,T4_SOUL,T5_SOUL,T6_SOUL,T7_SOUL,T8_SOUL,T4_RELIC,T5_RELIC,T6_RELIC,T7_RELIC,T8_RELIC";
@@ -191,7 +198,10 @@ namespace AlbionFlipperServer
             await InitItemList();
             await GetNewUpgradePrices();
             await Task.Run(() => DataReceiverLoop());
+            sellcitycb.SelectedItem = "Black Market";
+            buycitycb.SelectedItem = "Caerleon";
         }
+
         private async Task DataReceiverLoop()
         {
             var listener = new HttpListener();
@@ -216,9 +226,8 @@ namespace AlbionFlipperServer
                 {
                     order.UnitPriceSilver /= 10000;
                     order.Expires = DateTime.Now;
-                    if (order.LocationId == 3003) BlackMarketData.AddOrUpdate(order.Id, order, (key, existingOrder) => order);
-                    else if (order.LocationId == 3005) CaerleonData.AddOrUpdate(order.Id, order, (key, existingOrder) => order);
-
+                    if (order.LocationId == SellCityCode) BlackMarketData.AddOrUpdate(order.Id, order, (key, existingOrder) => order);
+                    else if (order.LocationId == BuyCityCode) CaerleonData.AddOrUpdate(order.Id, order, (key, existingOrder) => order);
                 }
             }
         }
@@ -305,8 +314,8 @@ namespace AlbionFlipperServer
             bool head = itemTypeId.Contains("_HEAD_");
             bool armor = itemTypeId.Contains("_ARMOR_");
             bool shoes = itemTypeId.Contains("_SHOES_");
-            bool cape = itemTypeId.Contains("_CAPEITEM_");
-            bool bag = itemTypeId.Contains("_BAG_") || itemTypeId.Contains("_CAPE@") || itemTypeId == ($"{itemTypeId.Substring(0, 2)}_CAPE");
+            bool cape = itemTypeId.Contains("_CAPEITEM_") || itemTypeId.Contains("_CAPE@") || itemTypeId == ($"{itemTypeId.Substring(0, 2)}_CAPE");
+            bool bag = itemTypeId.Contains("_BAG_") || itemTypeId.Contains("_BAG@") || itemTypeId == ($"{itemTypeId.Substring(0, 2)}_BAG");
 
             switch (tier)
             {
@@ -354,55 +363,60 @@ namespace AlbionFlipperServer
             var caeList = CaerleonData.Values.Where(cae => (DateTime.Now - cae.Expires).Minutes <= caetime).ToList();
             var bmList = BlackMarketData.Values.Where(bm => (DateTime.Now - bm.Expires).Minutes <= bmtime).ToList();
 
-            Parallel.ForEach(caeList, caeData =>
+            var tierDictionary = TierList.ToDictionary(i => i.Code);
+
+            var bmListGroupedByName = bmList
+    .Where(bm => tierDictionary.TryGetValue(bm.ItemTypeId, out var tierData))
+    .GroupBy(bm => tierDictionary[bm.ItemTypeId].Name)
+    .ToDictionary(g => g.Key, g => g.ToList());
+
+            var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount };
+            Parallel.ForEach(caeList, parallelOptions, caeData =>
             {
-                foreach (var bmData in bmList)
+                if (tierDictionary.TryGetValue(caeData.ItemTypeId, out var caeItemDataFirst))
                 {
-                    var caeItemData = TierList.FirstOrDefault(i => i.Code == caeData.ItemTypeId);
-                    var bmItemData = TierList.FirstOrDefault(i => i.Code == bmData.ItemTypeId);
-                    if (caeItemData.Name == bmItemData.Name && caeItemData.Tier == bmItemData.Tier && caeData.QualityLevel >= bmData.QualityLevel)
+                    if (bmListGroupedByName.TryGetValue(caeItemDataFirst.Name, out var matchingBmList))
                     {
-                        if (bmItemData.Enchantment != 4 && caeItemData.Enchantment < 3)
+                        foreach (var bmData in matchingBmList)
                         {
-                            long initialCost = caeData.UnitPriceSilver;
-                            long totalCost = initialCost;
-
-                            Parallel.For(caeData.EnchantmentLevel, bmData.EnchantmentLevel, currentLevel =>
+                            if (tierDictionary.TryGetValue(caeData.ItemTypeId, out var caeItemData) && tierDictionary.TryGetValue(bmData.ItemTypeId, out var bmItemData))
                             {
-                                int targetLevel = currentLevel + 1;
-                                var upgradeCost = CalcUpgradeCost(caeData.ItemTypeId, currentLevel, targetLevel, caeItemData.Tier);
-
-                                lock (syncObj)
+                                if (caeItemData.Name == bmItemData.Name && caeItemData.Tier == bmItemData.Tier && caeData.QualityLevel >= bmData.QualityLevel && bmItemData.Enchantment != 4 && caeItemData.Enchantment < 3)
                                 {
-                                    totalCost += upgradeCost;
-                                }
-
-                                if (bmItemData.Enchantment == targetLevel && bmData.UnitPriceSilver > totalCost)
-                                {
-                                    var profit = bmData.UnitPriceSilver - totalCost;
-                                    if (profit >= minprofitVal)
+                                    long initialCost = caeData.UnitPriceSilver;
+                                    long totalCost = initialCost;
+                                    for (int currentLevel = caeData.EnchantmentLevel; currentLevel < bmData.EnchantmentLevel; currentLevel++)
                                     {
-                                        lock (syncObj)
+                                        int targetLevel = currentLevel + 1;
+                                        var upgradeCost = CalcUpgradeCost(caeData.ItemTypeId, currentLevel, targetLevel, caeItemData.Tier);
+
+                                        totalCost += upgradeCost;
+
+                                        if (bmItemData.Enchantment == targetLevel && bmData.UnitPriceSilver > totalCost)
                                         {
-                                            maxProfitUpItems.AddOrUpdate(caeData.ItemTypeId,
-                                                (caeData, bmData, profit, totalCost),
-                                                (key, existing) => existing.profit < profit ? (caeData, bmData, profit, totalCost) : existing);
+                                            var profit = (long)((bmData.UnitPriceSilver * 0.96) - totalCost);
+                                            if (profit >= minprofitVal)
+                                            {
+                                                maxProfitUpItems.AddOrUpdate(caeData.ItemTypeId,
+                                                    (caeData, bmData, profit, totalCost),
+                                                    (key, existing) => existing.profit < profit ? (caeData, bmData, profit, totalCost) : existing);
+                                            }
                                         }
                                     }
                                 }
-                            });
-                        }
-                    }
 
+                                if (caeData.ItemTypeId == bmData.ItemTypeId && caeData.EnchantmentLevel == bmData.EnchantmentLevel && caeData.QualityLevel >= bmData.QualityLevel)
+                                {
+                                    var profit = (long)((bmData.UnitPriceSilver * 0.96) - caeData.UnitPriceSilver);
+                                    if (profit >= minprofitVal)
+                                    {
+                                        maxProfitItems.AddOrUpdate(caeData.ItemTypeId,
+                                            (caeData, bmData, profit),
+                                            (key, existing) => existing.profit < profit ? (caeData, bmData, profit) : existing);
+                                    }
+                                }
+                            }
 
-                    if (caeData.ItemTypeId == bmData.ItemTypeId && caeData.EnchantmentLevel == bmData.EnchantmentLevel && caeData.QualityLevel >= bmData.QualityLevel)
-                    {
-                        var profit = bmData.UnitPriceSilver - caeData.UnitPriceSilver;
-                        if (profit >= minprofitVal)
-                        {
-                            maxProfitItems.AddOrUpdate(caeData.ItemTypeId,
-                                (caeData, bmData, profit),
-                                (key, existing) => existing.profit < profit ? (caeData, bmData, profit) : existing);
                         }
                     }
                 }
@@ -435,7 +449,7 @@ namespace AlbionFlipperServer
                 else if (item.caeData.ItemTypeId.Contains("_ARMOR_")) costcount = armorupcost;
                 else if (item.caeData.ItemTypeId.Contains("_SHOES_")) costcount = shoesupcost;
                 else if (item.caeData.ItemTypeId.Contains("_CAPEITEM_") || item.caeData.ItemTypeId.Contains("_CAPE@") || item.caeData.ItemTypeId == ($"{item.caeData.ItemTypeId.Substring(0, 2)}_CAPE")) costcount = capeupcost;
-                else if (item.caeData.ItemTypeId.Contains("_BAG_")) costcount = bagupcost;
+                else if (item.caeData.ItemTypeId.Contains("_BAG_") || item.caeData.ItemTypeId.Contains("_BAG@") || item.caeData.ItemTypeId == ($"{item.caeData.ItemTypeId.Substring(0, 2)}_BAG")) costcount = bagupcost;
 
                 bool level1up = false;
                 bool level2up = false;
@@ -470,7 +484,7 @@ namespace AlbionFlipperServer
                 string blackMarketPrice = $"x{item.bmData.Amount} {item.bmData.UnitPriceSilver:N0} - {GetQualityLevel(item.bmData.QualityLevel)} | {timeDiff_BM.Minutes} dakika";
                 var caeItemData = TierList.FirstOrDefault(i => i.Code == item.caeData.ItemTypeId);
                 var bmItemData = TierList.FirstOrDefault(i => i.Code == item.bmData.ItemTypeId);
-                string upgraderow = $"[{caeitemData?.Tier}.{caeitemData?.Enchantment}] -> [{bmitemData?.Tier}.{bmitemData?.Enchantment}] Cost: {item.cost:N0} | {showupgradeinstruction}";
+                string upgraderow = $"[{caeitemData?.Tier}.{caeitemData?.Enchantment}] -> [{bmitemData?.Tier}.{bmitemData?.Enchantment}] Cost: {(item.cost - item.caeData.UnitPriceSilver):N0} | {showupgradeinstruction}";
 
                 rowsToAdd.Add(new object[] { itemName, (decimal)item.profit, caerleonPrice, blackMarketPrice, upgraderow });
             }
@@ -520,6 +534,81 @@ namespace AlbionFlipperServer
             base.WndProc(ref msg);
         }
 
+        private void savecityBtn_Click(object sender, EventArgs e)
+        {
+         
+            switch (sellcitycb.SelectedItem.ToString())
+            {
+                case "Bridgewatch":
+                    SellCityCode = 2004;
+                    break;
+                case "Martlock":
+                    SellCityCode = 3008;
+                    break;
+                case "Fort Sterling":
+                    SellCityCode = 4002;
+                    break;
+                case "Thetford":
+                    SellCityCode = 0007;
+                    break;
+                case "Lymhurst":
+                    SellCityCode = 1002;
+                    break;
+                case "Brecilien":
+                    SellCityCode = 5003;
+                    break;
+                case "Caerleon":
+                    SellCityCode = 3005;
+                    break;
+                case "Black Market":
+                    SellCityCode = 3003;
+                    break;
+                default:
+                    SellCityCode = 3003;
+                    break;
+            }
+            switch (buycitycb.SelectedItem.ToString())
+            {
+                case "Bridgewatch":
+                    BuyCityCode = 2004;
+                    break;
+                case "Martlock":
+                    BuyCityCode = 3008;
+                    break;
+                case "Fort Sterling":
+                    BuyCityCode = 4002;
+                    break;
+                case "Thetford":
+                    BuyCityCode = 0007;
+                    break;
+                case "Lymhurst":
+                    BuyCityCode = 1002;
+                    break;
+                case "Brecilien":
+                    BuyCityCode = 5003;
+                    break;
+                case "Caerleon":
+                    BuyCityCode = 3005;
+                    break;
+                default:
+                    SellCityCode = 3005;
+                    break;
+            }
+            LogApp($"Sell City: {sellcitycb.SelectedItem.ToString()}({SellCityCode}) | Buy City: {buycitycb.SelectedItem.ToString()}({BuyCityCode})");
+        }
 
+        private void manueldataAdd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(manueldataTxt.Text)) return;
+            var localData = JsonConvert.DeserializeObject<Root>(manueldataTxt.Text);
+            LogApp($"Processing {localData.Orders.Count}x manuel data...");
+            foreach (var order in localData.Orders)
+            {
+                order.UnitPriceSilver /= 10000;
+                order.Expires = DateTime.Now;
+                if (order.LocationId == SellCityCode) BlackMarketData.AddOrUpdate(order.Id, order, (key, existingOrder) => order);
+                else if (order.LocationId == BuyCityCode) CaerleonData.AddOrUpdate(order.Id, order, (key, existingOrder) => order);
+            }
+        }
     }
 }

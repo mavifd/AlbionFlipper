@@ -33,7 +33,7 @@ AlbionFlipper is a Windows desktop app (WinForms) for finding profitable item fl
 
 1. Start AlbionFlipper.
 2. Select buy/sell cities and save.
-3. Feed market JSON to `http://localhost:8080/` (or use the app's **Add Manuel Data** button for manual input).
+3. Feed market JSON to `http://localhost:8080/` (or paste JSON into the manual data box in the app).
 4. (Optional) click **Update Costs** with **Cloud Update** enabled.
 5. Click **Check Profits** to populate results.
 

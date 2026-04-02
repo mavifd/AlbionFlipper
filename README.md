@@ -1,5 +1,7 @@
 # AlbionFlipper
 
+This project is developed **strictly for educational and analytical purposes only**.
+
 AlbionFlipper is a Windows desktop app (WinForms) for finding profitable item flips between Albion Online markets, with optional enchantment-upgrade profit calculations.
 
 ## What it does

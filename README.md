@@ -24,7 +24,7 @@ AlbionFlipper is a Windows desktop app (WinForms) for finding profitable item fl
 
 ## Build and run
 
-1. Open `/home/runner/work/AlbionFlipper/AlbionFlipper/AlbionFlipperServer.sln` in Visual Studio.
+1. Open `AlbionFlipperServer.sln` in Visual Studio.
 2. Restore NuGet packages (if prompted).
 3. Build the solution.
 4. Start the application.
@@ -33,7 +33,7 @@ AlbionFlipper is a Windows desktop app (WinForms) for finding profitable item fl
 
 1. Start AlbionFlipper.
 2. Select buy/sell cities and save.
-3. Feed market JSON to `http://localhost:8080/` (or use **Add Manuel Data**).
+3. Feed market JSON to `http://localhost:8080/` (or use the app's **Add Manuel Data** button for manual input).
 4. (Optional) click **Update Costs** with **Cloud Update** enabled.
 5. Click **Check Profits** to populate results.
 
